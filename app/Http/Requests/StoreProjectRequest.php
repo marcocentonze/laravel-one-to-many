@@ -22,7 +22,13 @@ class StoreProjectRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'type_id' => 'nullable|exists:types,id',
+            'title' => 'required|bail|min:3|max:150',
+            'slug' => 'min:3|max:50',
+            'description' => 'nullable|max:350',
+            'cover_image' => 'nullable|image|max:500',
+            'website_link' => 'nullable|url',
+            'github_link' => 'nullable|url'
         ];
     }
 }

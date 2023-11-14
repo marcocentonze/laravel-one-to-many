@@ -20,6 +20,7 @@
 
                     <div class="card-body">
                         <p class="card-text">{{ $project->description }}</p>
+                        <p><strong>Type: </strong>{{ $project->type?->name ?? 'Uncategorized' }}</p>  {{-- null safe operator --}}  
                         <a href="{{ route('admin.projects.edit', $project->slug) }}" class="btn btn-primary">Edit</a>
                         <a href="{{ route('admin.projects.index') }}" class="btn btn-secondary">Back to List</a>
                     </div>

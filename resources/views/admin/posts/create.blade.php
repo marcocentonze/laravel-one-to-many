@@ -42,6 +42,25 @@
                     <textarea class="form-control" name="description" id="description" rows="3"></textarea>
                 </div>
 
+                   <div class="mb-3">
+                        <label for="type_id" class="form-label">Type</label>
+                        <select class="form-select form-select @error('type_id') is-invalid @enderror" name="type_id"
+                            id="type_id">
+                            <option selected disabled>Select a Type</option>
+                            <option value="">Uncategorized</option>
+                            @foreach ($types as $type)
+                                <option value="{{ $type->id }}" {{-- SE VI E' UN ERRORE E LA PAGINA VIENE RICARICATA IL CAMPO PRECEDENTEMENTE SELEZIONATO RESTA selected --}}
+                                    {{ $type->id == old('type_id') ? 'selected' : '' }}>
+                                    {{ $type->name }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('type_id')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                 <div class="mb-3">
                     <label for="website_link" class="form-label">Add Website Link</label>
                     <input type="url" name="website_link" id="website_link"
